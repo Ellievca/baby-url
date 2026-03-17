@@ -10,7 +10,7 @@ function fillPool() {
     }
 }
 
-function getShortCode() {
+function getBabyCode() {
     if (keyPool.length < 10) fillPool(); // refills pool if its running low
     return keyPool.shift(); // removes and returns the first code in the pool 
 }
@@ -18,4 +18,4 @@ function getShortCode() {
 // fill the pool once when the server starts
 fillPool();
 
-module.exports = { getShortCode };
+module.exports = { getBabyCode };
