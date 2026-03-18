@@ -17,7 +17,7 @@ export default function Home() {
         <Link to="/dashboard">
             <button className="btn-ghost">view all ur baby urls →</button>
         </Link>
-</div>
+      </div>
     </div>
   );
 }

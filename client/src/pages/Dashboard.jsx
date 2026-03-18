@@ -4,12 +4,14 @@ import { useAuth } from '../context/AuthContext';
 import { urls } from '../utils/api';
 import ShortenForm from '../components/ShortenForm';
 import UrlTable from '../components/UrlTable';
+import AnalyticsModal from '../components/AnalyticsModal';
 
 export default function Dashboard() {
     const { user } = useAuth();
     const navigate = useNavigate();
     const [urlList, setUrlList] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [analyticsCode, setAnalyticsCode] = useState(null);
 
     useEffect(() => {
     if (!user) { navigate('/login'); return; } // if no user, redirect to login
@@ -29,7 +31,7 @@ export default function Dashboard() {
     };
 
     const handleViewAnalytics = (code) => {
-        console.log(code);
+        setAnalyticsCode(code);
     };
 
     return (
@@ -45,6 +47,9 @@ export default function Dashboard() {
                 : <UrlTable data={urlList} onDelete={handleDeleteUrl} onViewAnalytics={handleViewAnalytics} />
             }
         </div>
+        {analyticsCode && (
+        <AnalyticsModal code={analyticsCode} onClose={() => setAnalyticsCode(null)} />
+        )}
     </div>
 );
 }
