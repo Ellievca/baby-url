@@ -94,6 +94,13 @@ router.get('/:code/analytics', requireAuth, async (req, res) => {
             return res.status(403).json({ error: 'That\'s not your URL gang.' });
         }
 
+        // group clicks by day
+        const clicksByDay = {};
+        url.clicks.forEach(click => {
+            const day = click.timestamp.toISOString().slice(0, 10);
+            clicksByDay[day] = (clicksByDay[day] || 0) + 1;
+        });
+
         // return analytics
         res.json({
             totalClicks: url.clickCount,
@@ -101,6 +108,7 @@ router.get('/:code/analytics', requireAuth, async (req, res) => {
             babyUrl: url.babyCode,
             createdAt: url.createdAt,
             expiresAt: url.expiresAt,
+            clicksByDay,
         });
     }
     catch (err) {
