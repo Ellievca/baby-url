@@ -30,7 +30,7 @@ export default function UrlTable({ data, onDelete, onViewAnalytics }) {
       <tbody>
         {data.map(url => (
           <tr key={url.babyCode} style={{ borderBottom:'1px solid var(--border)' }}>
-            <td style={{ padding:'12px' }}>
+            <td style={{ padding:'12px', whiteSpace: 'nowrap' }}>
                 <a 
                     href={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${url.babyCode}`}
                     target="_blank"
@@ -40,7 +40,7 @@ export default function UrlTable({ data, onDelete, onViewAnalytics }) {
                     {import.meta.env.VITE_API_URL || 'http://localhost:5001'}/{url.babyCode}
                 </a>
             </td>
-            <td style={{ padding:'12px', fontSize:13, color:'var(--text2)' }}>{url.bigUrl}</td>
+            <td style={{ padding:'12px', fontSize:13, color:'var(--text2)', maxWidth:200, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>{url.bigUrl}</td>
             <td style={{ padding:'12px' }}>{url.clickCount}</td>
             <td style={{ display:'flex', gap:6, padding:'8px 0' }}>
                 <button className="btn-ghost btn-sm" onClick={() => onViewAnalytics(url.babyCode)}>
