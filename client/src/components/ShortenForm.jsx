@@ -78,8 +78,8 @@ export default function ShortenForm({ onSuccess}) {
         {result && (
             <div style={{ marginTop:14, padding:'12px 16px', background:'var(--accent-dim)', borderRadius:'var(--radius)' }}>
                 <p style={{ fontSize:12, color:'var(--text2)', marginBottom:4 }}>ur baby url is ready!</p>
-                <a href={`http://localhost:5001/${result.babyCode}`} target="_blank" rel="noopener noreferrer">
-                    http://localhost:5001/{result.babyCode}
+                <a href={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${result.babyCode}`}>
+                    {import.meta.env.VITE_API_URL || 'http://localhost:5001'}/{result.babyCode}
                 </a>
             </div>
         )}
