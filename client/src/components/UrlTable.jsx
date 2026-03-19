@@ -30,7 +30,16 @@ export default function UrlTable({ data, onDelete, onViewAnalytics }) {
       <tbody>
         {data.map(url => (
           <tr key={url.babyCode} style={{ borderBottom:'1px solid var(--border)' }}>
-            <td style={{ padding:'12px' }}>/{url.babyCode}</td>
+            <td style={{ padding:'12px' }}>
+                <a 
+                    href={`${import.meta.env.VITE_API_URL || 'http://localhost:5001'}/${url.babyCode}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color:'var(--accent)', fontFamily:'monospace', fontSize:13 }}
+                >
+                    {import.meta.env.VITE_API_URL || 'http://localhost:5001'}/{url.babyCode}
+                </a>
+            </td>
             <td style={{ padding:'12px', fontSize:13, color:'var(--text2)' }}>{url.bigUrl}</td>
             <td style={{ padding:'12px' }}>{url.clickCount}</td>
             <td style={{ display:'flex', gap:6, padding:'8px 0' }}>
